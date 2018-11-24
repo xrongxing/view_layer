@@ -16,19 +16,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from course import urls as course_urls
-from course import views as course_views
-from . import views as root_views
+from . import views as course_views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    #url(r'^course/', include(course_urls)),
-    url(r'^course/', include('course.urls')),
+    url(r'(?P<year>[0-9]{4})/$', course_views.index, name='index'),
 ]
-
-# 自定义错误页面,在其它app中的二级URLconf中设置这些变量无效。
-# 经测试以下配置无效
-handler400 = root_views.bad_request
-handler403 = root_views.permission_denied
-handler404 = root_views.page_not_found
-handler500 = root_views.page_error
