@@ -20,4 +20,5 @@ from . import views as course_views
 
 urlpatterns = [
     url(r'(?P<year>[0-9]{4})/$', course_views.index, name='index'),
+    url(r'streamingcsv/$', course_views.some_streaming_csv_view, name='streamingcsv'),
 ]
